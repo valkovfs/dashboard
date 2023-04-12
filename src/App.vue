@@ -3,7 +3,7 @@
     <RouterView/>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { RouterView } from 'vue-router'
 import MenuNav from '@/components/Menu/MenuNav.vue';
 </script>
