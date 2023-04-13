@@ -1,3 +1,8 @@
+<template>
+  <main>Projects</main>
+</template>
+
+<!--
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useProjectsStore } from '@/stores/projects';
@@ -47,3 +52,4 @@ const handleFetch = () => {
 
 
 </style>
+-->
