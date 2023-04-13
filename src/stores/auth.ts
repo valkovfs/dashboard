@@ -18,9 +18,6 @@ export const useAuthStore = defineStore('auth', {
     async loginWithGithub() {
       try {
         const provider = new GithubAuthProvider();
-        provider.setCustomParameters({
-          redirect_uri: 'http://127.0.0.1:8000/auth/callback/github',
-        });
         await signInWithPopup(auth, provider);
         // Handle successful login
       } catch (error) {
