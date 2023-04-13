@@ -1,5 +1,11 @@
 {
   "files": [],
+  "module": "esnext",
+  "target": "ESNext",
+  "moduleResolution": "Node",
+  "types": [
+    "firebase"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"
