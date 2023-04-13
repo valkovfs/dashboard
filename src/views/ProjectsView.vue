@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import { useProjectsStore } from '@/stores/projects';
 import { onMounted } from 'vue';
