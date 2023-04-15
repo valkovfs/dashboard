@@ -1,21 +1,18 @@
 <template>
-  <div>
-    <button @click="loginWithGithub">Login with GitHub</button>
-  </div>
+    <div class="hello">
+        <div id="GitHubSignIn" v-if="!user.isSignedIn">
+            <h3>GitHub Signin</h3>
+            <button @click="user.handleSignInGitHub()">login</button>
+        </div>
+        <div id="GitHubSignOut" v-if="user.isSignedIn">
+            <h3>GitHub Signout</h3>
+            <button @click="user.handleSignOut()">Logout</button>
+        </div>
+    </div>
+
 </template>
 
-<script>
-import { useAuthStore } from '@/stores/auth';
-
-export default {
-  methods: {
-    async loginWithGithub() {
-      // Access the auth store
-      const authStore = useAuthStore();
-
-      // Call the loginWithGithub action from the auth store
-      await authStore.loginWithGithub();
-    },
-  },
-};
+<script setup>
+    import {useUserStore} from "@/stores/user";
+    const user = useUserStore()
 </script>

@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import ProjectsView from "@/views/ProjectsView.vue";
-import ContactsView from "@/views/ContactsView.vue";
-import LoginView from "@/views/LoginView.vue";
+import main from '../layouts/main.vue'
+import login from '../layouts/login.vue'
+import {guard} from "@/utils/guard";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,7 +9,10 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: () => import('@/views/HomeView.vue'),
+      meta: {
+        layout: main
+      }
     },
     {
       path: '/about',
@@ -23,21 +25,30 @@ const router = createRouter({
     {
       path: '/projects',
       name: 'projects',
-      component: ProjectsView,
+      component: () => import('@/views/ProjectsView.vue'),
       props: true
     },
     {
       path: '/contacts',
       name: 'contacts',
-      component: ContactsView,
-      props: true
+      component: () => import('@/views/ContactsView.vue'),
+      props: true,
+/*      beforeEnter: () => {
+        const canAccess = guard()
+        if (!canAccess) return '/login'
+      }*/
     },
     {
       path: '/login',
       name: 'login',
-      component: LoginView
+      component: () => import('@/views/LoginView.vue'),
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'login' && !guard()) next({ name: 'login'})
+  else next()
 })
 
 export default router

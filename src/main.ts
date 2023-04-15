@@ -1,19 +1,17 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import * as firebase from "firebase/app";
-import 'firebase/auth';
-import firebaseConfig from "@/utils/firebaseConfig";
-
+import VueCookies from 'vue3-cookies'
 import App from './App.vue'
 import router from './router'
 
 import './assets/main.css'
 
-firebase.initializeApp(firebaseConfig)
+
+
 
 const app = createApp(App)
-
-app.use(createPinia())
+const pinia = createPinia()
+app.use(pinia)
 app.use(router)
-
+app.use(VueCookies)
 app.mount('#app')

@@ -1,5 +1,5 @@
 <template>
-  <nav class="menu_nav">
+  <nav v-if="isAuth" class="menu_nav">
     <ul class="menu_ul">
       <li class="menu_nav_link">
         <router-link to="/"
@@ -7,6 +7,11 @@
         >
           <p class="menu_button_text"> Home</p>
         </router-link>
+          <router-link to="login"
+                       class="menu_button"
+          >
+              <p class="menu_button_text"> Login</p>
+          </router-link>
         <router-link to="projects"
                      class="menu_button"
         >
@@ -29,6 +34,9 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies()
+const isAuth = cookies.get('auth.token')
 </script>
 
 <style scoped>

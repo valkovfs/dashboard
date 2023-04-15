@@ -1,0 +1,1 @@
+// Import the Firebase Authentication module from your Firebase configuration
