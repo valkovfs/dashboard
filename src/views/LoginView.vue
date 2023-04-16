@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user';
 import SignButton from '@/components/button/SignButton.vue';
