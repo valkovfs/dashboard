@@ -1,18 +1,25 @@
 <template>
-    <div class="hello">
-        <div id="GitHubSignIn" v-if="!user.isSignedIn">
-            <h3>GitHub Signin</h3>
-            <button @click="user.handleSignInGitHub()">login</button>
-        </div>
-        <div id="GitHubSignOut" v-if="user.isSignedIn">
-            <h3>GitHub Signout</h3>
-            <button @click="user.handleSignOut()">Logout</button>
-        </div>
-    </div>
+    <main class="login-container">
+        <sign-button v-if="!isAuth()" @click="user.handleSignInGitHub()" :button-text="'Signin with GitHub'"/>
+        <sign-button v-else @click="user.handleSignOut()" :button-text="'Signout'"/>
+
+    </main>
 
 </template>
 
 <script setup>
     import {useUserStore} from "@/stores/user";
+    import SignButton from '@/components/button/SignButton.vue';
     const user = useUserStore()
+    import { isAuth } from '@/services/token.service';
 </script>
+
+<style scoped>
+    .login-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+    }
+</style>

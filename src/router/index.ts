@@ -1,6 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import main from '../layouts/main.vue'
-import login from '../layouts/login.vue'
 import {guard} from "@/utils/guard";
 
 const router = createRouter({
@@ -10,9 +8,6 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import('@/views/HomeView.vue'),
-      meta: {
-        layout: main
-      }
     },
     {
       path: '/about',
