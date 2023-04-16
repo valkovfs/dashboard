@@ -25,10 +25,10 @@ export const useUserStore = defineStore('user',{
            await signInWithPopup(auth, providerGithub)
                 .then((result: any) => {
                     const { cookies } = useCookies()
+                    const router = useRouter()
                     this.user = result.user;
-                    cookies.set('auth.token', result.user.uid, '30m')
                     this.isSignedIn = true;
-                    window.location.reload()
+                    cookies.set('auth.token', result.user.uid, '30m')
                 }).catch((error) => {
                 console.log(error);
             });
@@ -39,10 +39,10 @@ export const useUserStore = defineStore('user',{
                 const { cookies } = useCookies()
                 cookies.remove('auth.token')
                 this.isSignedIn = false;
-                window.location.reload()
             }).catch((error) => {
                 console.log(error);
             });
         }
     },
+  persist: true,
 })

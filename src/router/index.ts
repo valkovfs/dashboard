@@ -41,9 +41,9 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  if (to.name !== 'login' && !guard()) next({ name: 'login'})
-  else next()
+router.beforeEach(async (to, from, next) => {
+  if (to.name !== 'login' && !guard()) await next({ name: 'login'})
+  else await next()
 })
 
 export default router

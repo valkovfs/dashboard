@@ -1,5 +1,12 @@
+<script setup lang="ts">
+import { RouterLink } from 'vue-router';
+import { useUserStore } from "@/stores/user";
+
+const user = useUserStore()
+</script>
+
 <template>
-  <nav v-if="isAuth" class="menu_nav">
+  <nav v-if="user.isSignedIn" class="menu_nav">
     <ul class="menu_ul">
       <li class="menu_nav_link">
         <router-link to="/"
@@ -32,12 +39,7 @@
   </nav>
 </template>
 
-<script setup lang="ts">
-import { RouterLink } from 'vue-router';
-import { useCookies } from "vue3-cookies";
-const { cookies } = useCookies()
-const isAuth = cookies.get('auth.token')
-</script>
+
 
 <style scoped>
 .menu_button {
