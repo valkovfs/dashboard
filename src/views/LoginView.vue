@@ -2,12 +2,11 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user';
 import SignButton from '@/components/button/SignButton.vue';
-
-const user = useUserStore()
-import { isAuth } from '@/services/token.service';
 import { useRouter } from 'vue-router';
+const router = useRouter();
+const user = useUserStore();
 
-const router = useRouter()
+
 const handleRedirect = async () => {
     await user.handleSignInGitHub()
     await router.push({ path: '/' })
