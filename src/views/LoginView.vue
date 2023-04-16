@@ -1,21 +1,34 @@
 <template>
-  <div>
-    <button @click="loginWithGithub">Login with GitHub</button>
-  </div>
+    <main class="login-container">
+        <sign-button v-if="!user.isSignedIn" @click="handleRedirect()" :button-text="'Signin with GitHub'"/>
+        <sign-button v-else @click="user.handleSignOut()" :button-text="'Signout'"/>
+
+    </main>
+
 </template>
 
-<script>
-import { useAuthStore } from '@/stores/auth';
+<script setup>
+import { useUserStore } from '@/stores/user';
+import SignButton from '@/components/button/SignButton.vue';
 
-export default {
-  methods: {
-    async loginWithGithub() {
-      // Access the auth store
-      const authStore = useAuthStore();
+const user = useUserStore()
+import { isAuth } from '@/services/token.service';
+import { useRouter } from 'vue-router';
 
-      // Call the loginWithGithub action from the auth store
-      await authStore.loginWithGithub();
-    },
-  },
-};
+const router = useRouter()
+const handleRedirect = async () => {
+  await user.handleSignInGitHub()
+  await router.push({ path: '/' })
+
+}
 </script>
+
+<style scoped>
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+</style>

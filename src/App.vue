@@ -14,12 +14,11 @@ import MenuNav from '@/components/Menu/MenuNav.vue';
     margin-right: auto; /* 1 */
     margin-left:  auto; /* 1 */
 
-    max-width: 960px; /* 2 */
-
     padding-right: 10px; /* 3 */
     padding-left:  10px; /* 3 */
     display: flex;
     justify-content: space-between;
     align-items: center;
+
   }
 </style>

@@ -1,5 +1,12 @@
+<script setup lang="ts">
+import { RouterLink } from 'vue-router';
+import { useUserStore } from "@/stores/user";
+
+const user = useUserStore()
+</script>
+
 <template>
-  <nav class="menu_nav">
+  <nav v-if="user.isSignedIn" class="menu_nav">
     <ul class="menu_ul">
       <li class="menu_nav_link">
         <router-link to="/"
@@ -7,6 +14,11 @@
         >
           <p class="menu_button_text"> Home</p>
         </router-link>
+          <router-link to="login"
+                       class="menu_button"
+          >
+              <p class="menu_button_text"> Login</p>
+          </router-link>
         <router-link to="projects"
                      class="menu_button"
         >
@@ -27,9 +39,7 @@
   </nav>
 </template>
 
-<script setup lang="ts">
-import { RouterLink } from 'vue-router';
-</script>
+
 
 <style scoped>
 .menu_button {
